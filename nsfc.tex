@@ -1,0 +1,382 @@
+% !TeX program = xelatex
+\documentclass{article}
+
+% Layout ---------------------------------------------------------
+\usepackage[a4paper,hmargin=32mm,vmargin=25.4mm]{geometry} % 页面边距
+\usepackage[UTF8,heading,zihao=-4]{ctex} % 中文支持、提纲标题格式设置
+\pagestyle{empty} % 无页眉页脚, 须在载入 ctex 宏包之后
+
+% Title ----------------------------------------------------------
+\usepackage{xcolor} % 彩色支持
+%\usepackage{amsmath}
+%\numberwithin{section}{part}
+%\usepackage{chngcntr}
+%\counterwithin{section}{part}
+\makeatletter
+\@addtoreset{section}{part}
+\makeatother
+\ctexset{
+  part={
+    name={（,）},
+    aftername={},
+    indent=2em,
+    hang=false,
+    format=\zihao{4}\color[RGB]{0,112,192}\sffamily\kaishu,
+    nameformat=\bfseries\parindent2em,
+    beforeskip=1em,
+    afterskip=0.5em,
+  },
+  section={
+    aftername={．},
+    indent=2em,
+    hang=false,
+    format=\zihao{4}\color[RGB]{0,112,192}\sffamily\kaishu,
+    beforeskip=1em,
+    afterskip=0.5em,
+  },
+}
+
+% Title Font -----------------------------------------------------
+%%%% XeLaTex/LuaLaTeX
+\usepackage{fontspec}
+\setsansfont{Arial} % 西文无衬线字体
+%\ctexset{part/format+=\setmainfont{KaiTi}\kaishu,
+%  section/format+=\setmainfont{KaiTi}\kaishu}
+\let\kaishu\relax\newCJKfontfamily\kaishu{KaiTi}[AutoFakeBold=2.85] % 开启伪粗体
+%\let\kaishu\relax\newCJKfontfamily\kaishu{KaiTi}[BoldFont={FZCuKaiS-R-GB}]
+%%%% pdfLaTeX
+%\usepackage{txfonts} % Times New Roman 风格全套设置
+
+% Main Font ------------------------------------------------------
+%%%% XeLaTeX/LuaLaTeX
+%\setmainfont{Times New Roman} % 西文衬线字体
+%\setCJKmainfont{SimSun}[BoldFont={FZXiaoBiaoSong-B05},ItalicFont={KaiTi}]
+\setCJKsansfont{SimHei} % 中文无衬线字体
+
+% Ref ------------------------------------------------------------
+\usepackage[numbers,square,sort&compress]{natbib}
+\renewcommand\bibsection{\subsection*{参考文献}}
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\section*}{\subsection}{}{}
+
+% Others ---------------------------------------------------------
+\ctexset{
+  subsection={indent=2em,format=\sffamily,beforeskip=1em,afterskip=0.5em},
+  subsubsection={indent=2em,format=\sffamily,beforeskip=0.5em,afterskip=0.5em},
+  subsubsection={number=(\arabic{subsubsection}),aftername=\enskip},
+}
+
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\setlist[1]{leftmargin=\parindent}
+\setlist[enumerate,1]{label=\textup{(\arabic*)}}
+
+\usepackage{graphicx,booktabs}
+\usepackage{caption}
+\captionsetup{labelsep=quad,font={sf,small},skip=6bp}
+
+%\usepackage[hidelinks]{hyperref}
+
+% ----------------------------------------------------------------
+\begin{document}
+
+\begin{center}
+  \zihao{3}\kaishu\bfseries 报告正文
+\end{center}
+
+\section*{\textcolor{black}{参照以下提纲撰写，要求内容翔实、清晰，层次分明，标题突出。}\textbf{请勿删除或改动下述提纲标题及括号中的文字。}}
+
+\part[立项依据与研究内容]
+{\textbf{立项依据与研究内容}（建议8000字以内）：}
+
+\section[项目的立项依据]
+{\textbf{项目的立项依据}（研究意义、国内外研究现状及发展动态分析，需结合科学研究发展趋势来论述科学意义；或结合国民经济和社会发展中迫切需要解决的关键科技问题来论述其应用前景。附主要参考文献目录）；}
+
+\subsection{简介}
+
+本模板为国家自然科学基金青年科学基金项目申请书正文的 \LaTeX 模板.
+项目主页地址: \texttt{https://github.com/jiaopjie/nsfc}
+
+本模板为非官方模板, 请注意官方 Word 模板中提纲标题的改动.
+
+\subsubsection{基本格式}
+
+官方 Word 模板中需要设置的基本格式如下.
+\begin{itemize}
+  \item \textsf{页面布局:}
+    A4 纸; 水平边距 32\,mm, 垂直边距 25.4\,mm; 无页眉页脚.
+  \item \textsf{提纲标题:}
+    四号楷体, 部分加粗; 蓝色, RGB 值为 (0,112,192); 首行缩进.
+\end{itemize}
+
+基本格式设置通过 \verb'geometry', \verb'ctex' 和 \verb'xcolor' 宏包完成, 见下表.
+\smallskip
+\begin{center}
+  \begin{tabular}{ll} \toprule
+    \sffamily 宏包  & \sffamily 功能 \\ \midrule
+    \verb'geometry' & 页面边距 \\
+    \verb'ctex'     & 字体和章节标题格式 \\
+    \verb'xcolor'   & 颜色支持 \\ \bottomrule
+  \end{tabular} 
+\end{center}
+\smallskip
+
+\subsubsection{扩展设置}
+
+本文的撰写还载入了 \verb'natbib', \verb'enumitem', \verb'caption', \verb'graphicx', \verb'booktabs' 和 \verb'hyperref' 宏包, 如表~\ref{tab:extra} 所示.
+如有其他需求, 请自行设置.
+
+\begin{table}[htbp!]
+  \caption{扩展宏包}
+  \label{tab:extra}
+  \centering
+  \begin{tabular}{ll} \toprule
+    \sffamily 宏包  & \sffamily 功能 \\ \midrule
+    \verb'natbib'   & 参考文献列表及引用格式 \\ 
+    \verb'enumitem' & 列表项格式 \\
+    \verb'caption'  & 表题和图题格式 \\
+    \verb'graphicx' & 插入图片 \\
+    \verb'booktabs' & 三线表横线 \\
+    \verb'hyperref' & 交叉引用的跳转超链接 \\ \bottomrule
+  \end{tabular} 
+\end{table}
+
+\subsubsection{编译方式}
+
+建议使用 XeLaTeX 或 LuaLaTeX 进行编译.
+使用 pdfLaTeX 编译时, 需调整导言区的一些代码.
+
+\subsection{基本格式设置}
+
+\subsubsection{页面布局}
+
+模板载入 \verb'article' 标准文档类.
+纸张及页边距通过 \verb'geometry' 宏包设置.
+\begin{verbatim}
+\usepackage[a4paper,hmargin=32mm,vmargin=25.4mm]{geometry}
+\end{verbatim}
+无页眉页脚可在载入 \verb'ctex' 宏包之后使用命令 \verb'\pagestyle{empty}'.
+
+\subsubsection{提纲标题格式}
+
+模板载入 \verb'ctex' 宏包提供中文支持.
+宏包选项 \verb'heading' 激活文档标题汉化, \verb'zihao=-4' 设置主文档字体为小四号字体.
+\begin{verbatim}
+\usepackage[UTF8,heading,zihao=-4]{ctex}
+\end{verbatim}
+
+这里的设置采用 \verb'ctex' 2.0 版本以后的语法, 请及时更新该宏包.
+提纲标题的一级标题拟设为 \verb'part' 级, 二级标题设为 \verb'section' 级.
+\begin{itemize}
+  \item
+    关联 \verb'section' 计数器到 \verb'part' 计数器.
+    可使用内部命令 \verb'\@addtoreset', 也可使用 \verb'amsmath' 宏包提供的 \verb'\numberwithin' 命令或者 \verb'chngcntr' 宏包提供的 \verb'\counterwithin' 命令.
+\begin{verbatim}
+\makeatletter
+\@addtoreset{section}{part}
+\makeatother
+\numberwithin{section}{part}
+\counterwithin{section}{part}
+\end{verbatim}
+  \item
+    \verb'part' 级标题的首行缩进.
+    在 \verb'ctex' 2019 年 5 月之前的版本中, 设置 \verb'indent' 选项可能会失效.
+    可手动设置 \verb'\parindent' 为 2em.
+\begin{verbatim}
+\ctexset{part/nameformat+=\bfseries\parindent2em}
+\end{verbatim}
+\end{itemize}
+
+\subsubsection{提纲标题字体}
+
+官方 Word 模板的提纲标题中出现的数字也是楷体.
+鉴于显示效果类似, 模板已初始替代为西文无衬线字体.
+
+可进一步把 Arial 设为西文无衬线字体, 这样显示效果更好.
+\begin{itemize}
+  \item
+    在 pdfLaTeX 编译方式下, 可通过载入 \verb'txfonts' 宏包实现.
+    该宏包同时把全套西文字体设为 Times New Roman 风格.
+  \item
+    在 XeLaTeX/LuaLaTeX 编译方式下, 使用命令 \verb'\setsansfont{Arial}' 即可.
+    该命令需载入 \verb'fontspec' 宏包.
+\end{itemize}
+
+若坚持使用楷体的数字, 可使用 \verb'\setmainfont{KaiTi}' 命令把西文衬线字体设置为楷体.
+该命令要求使用 XeLaTeX/LuaLaTeX 编译方式.
+\begin{verbatim}
+\ctexset{part/format+=\setmainfont{KaiTi}\kaishu,
+  section/format+=\setmainfont{KaiTi}\kaishu}
+\end{verbatim}
+
+另外, 使用 XeLaTeX/LuaLaTeX 编译方式时, \verb'ctex' 宏包提供的楷体命令 \verb'\kaishu' 关闭了伪粗体, 加粗时没有效果.
+需重定义该命令并开启伪粗体.
+\begin{verbatim}
+\let\kaishu\relax
+\newCJKfontfamily\kaishu{KaiTi}[AutoFakeBold=2.85]
+\end{verbatim}
+其中, 第一行取消原定义, 第二行重定义 \verb'kaishu' 并设置伪粗体.
+可选参数取为 \verb'AutoFakeBold=2.85' 时跟 Word 中的加粗效果基本一致.
+也可以只使用可选参数 \verb'AutoFakeBold' 开启伪粗体.
+
+伪粗体被认为效果较差, 替代的办法是改用其他字体, 如方正粗楷.
+但这与官方 Word 模板有所不同, 请谨慎选择.
+\begin{verbatim}
+\let\kaishu\relax
+\newCJKfontfamily\kaishu{KaiTi}[BoldFont={FZCuKaiS-R-GB}]
+\end{verbatim}
+
+\subsection{扩展设置}
+
+\subsubsection{中文正文字体}
+
+Windows 系统下中文字体设置为中易字体+微软雅黑, 即: 衬线字体为宋体, 其斜体形式为楷体, 加粗形式为黑体; 无衬线字体为微软雅黑.
+其中微软雅黑被认为适于屏幕显示, 打印效果可能不太好.
+可自行酌情调整, 比如下面的设置.
+\begin{verbatim}
+\setCJKmainfont{Source Han Serif SC}
+  [ItalicFont={KaiTi},BoldItalicFont={FZCuKaiS-R-GB}]
+\setCJKsansfont{Source Han Sans SC}
+\end{verbatim}
+
+\subsubsection{参考文献列表}
+
+参考文献列表可使用 \verb'.bib' 文件自动生成, 也可使用 \verb'thebibliography' 环境手动输入.
+自动生成所需的 \verb'.bst' 文件请自行选择.
+
+参考文献列表的标题原本是 \verb'section' 级, 这里改为 \verb'subsection' 级标题.
+可重定义 \verb'natbib' 宏包提供的 \verb'\bibsection' 命令,
+也可使用 \verb'etoolbox' 宏包提供的 \verb'\patchcmd' 命令.
+\begin{verbatim}
+\renewcommand\bibsection{\subsection*{参考文献}}
+\patchcmd{\thebibliography}{\section*}{\subsection*}{}{}
+\end{verbatim}
+如需编号, 把上面的 \verb'\subsection*' 改为 \verb'\subsection' 即可.
+
+\subsubsection{引用}
+
+行文中对参考文献的引用默认是正文形式 \cite{Knuth1986TeXbook}.
+可通过 \verb'natbib' 宏包提供的 \verb'\setcitestyle' 命令切换, 效果见下表.
+但行文中的引用形式最好统一.
+\smallskip
+\begin{center}
+  \begin{tabular}{ll} \toprule
+    \sffamily 命令 & \sffamily 效果 \\ \midrule
+    \verb'\setcitestyle{super}'
+    & \setcitestyle{super}正文 \cite{Knuth1986TeXbook} \\
+    \verb'\setcitestyle{number}'
+    & \setcitestyle{numbers}正文 \cite{Knuth1986TeXbook} \\ \bottomrule
+  \end{tabular}
+\end{center}
+\smallskip
+
+\subsubsection{其他设置}
+
+\begin{itemize}
+  \item
+    适当设置了 \verb'subsection' 和 \verb'subsubsection' 级标题的格式.
+    其中后者的序号不关联上一级标题序号,
+    可删除对其 \verb'number' 选项的设置以恢复默认.
+\begin{verbatim}
+subsubsection/number=(\arabic{subsubsection}),
+\end{verbatim}
+  \item
+    通过 \verb'enumitem' 宏包列表项的缩进, 并取消了列表项之间的额外间距.
+%\begin{verbatim}
+%\usepackage{enumitem}
+%\setlist{nosep,leftmargin=*}
+%\setlist[1]{leftmargin=\parindent}
+%\setlist[enumerate,1]{label=\textup{(\arabic*)}}
+%\end{verbatim}
+  \item
+    \verb'graphicx' 宏包用于插入图片, \verb'booktabs' 宏包提供三线表横线.
+    \verb'caption' 宏包设置浮动环境 \verb'table' 和 \verb'figure' 的表题和图题.
+    这里设置了表题与图题的字体等格式.
+    效果见表~\ref{tab:extra} 和图~\ref{fig:logo}.
+\begin{verbatim}
+\captionsetup{labelsep=quad,font={sf,small},skip=6bp}
+\end{verbatim}
+    \begin{figure}[htbp!]
+      \centering
+      \includegraphics[height=10em]{logo.jpg}
+      \caption{图片}
+      \label{fig:logo}
+    \end{figure}
+  \item
+    可通过 \verb'hyperref' 宏包建立交叉引用的跳转超链接.
+    但目前报告正文上传后, 系统生成的申请书中, 超链接会失效.
+\end{itemize}
+
+\bibliographystyle{amsplain}
+\bibliography{ref}
+
+%\begin{thebibliography}{1}
+%
+%\bibitem{Knuth1986TeXbook}
+%  Donald~E. Knuth,
+%  \emph{The {\TeX}book},
+%  Computers and Typesetting, vol.~A,
+%  Addison-Wesley, Reading, Massachusetts, 1986.
+%
+%\end{thebibliography}
+
+\section[项目的研究内容、研究目标，以及拟解决的关键科学问题]
+{\textbf{项目的研究内容、研究目标，以及拟解决的关键科学问题}（此部分为重点阐述内容）；}
+
+无
+
+\section[拟采取的研究方案及可行性分析]
+{\textbf{拟采取的研究方案及可行性分析}（包括研究方法、技术路线、实验手段、关键技术等说明）；}
+
+无
+
+\section{\textbf{本项目的特色与创新之处；}}
+
+无
+
+\section[年度研究计划及预期研究结果]
+{\textbf{年度研究计划及预期研究结果}（包括拟组织的重要学术交流活动、国际合作与交流计划等）。}
+
+无
+
+\part{\textbf{研究基础与工作条件}}
+
+\section[研究基础]
+{\textbf{研究基础}（与本项目相关的研究工作积累和已取得的研究工作成绩）；}
+
+无
+
+\section[工作条件]
+{\textbf{工作条件}（包括已具备的实验条件，尚缺少的实验条件和拟解决的途径，包括利用国家实验室、国家重点实验室和部门重点实验室等研究基地的计划与落实情况）；}
+
+无
+
+\section[正在承担的与本项目相关的科研项目情况]
+{\textbf{正在承担的与本项目相关的科研项目情况}（申请人正在承担的与本项目相关的科研项目情况，包括国家自然科学基金的项目和国家其他科技计划项目，要注明项目的名称和编号、经费来源、起止年月、与本项目的关系及负责的内容等）；}
+
+无
+
+\section[完成国家自然科学基金项目情况]
+{\textbf{完成国家自然科学基金项目情况}（对申请人负责的前一个已结题科学基金项目（项目名称及批准号）完成情况、后续研究进展及与本申请项目的关系加以详细说明。另附该已结题项目研究工作总结摘要（限500字）和相关成果的详细目录）。}
+
+无
+
+\part{\textbf{其他需要说明的问题}}
+
+\section{申请人同年申请不同类型的国家自然科学基金项目情况（列明同年申请的其他项目的项目类型、项目名称信息，并说明与本项目之间的区别与联系）。}
+
+无
+
+\section{具有高级专业技术职务（职称）的申请人是否存在同年申请或者参与申请国家自然科学基金项目的单位不一致的情况；如存在上述情况，列明所涉及人员的姓名，申请或参与申请的其他项目的项目类型、项目名称、单位名称、上述人员在该项目中是申请人还是参与者，并说明单位不一致原因。}
+
+无
+
+\section{具有高级专业技术职务（职称）的申请人是否存在与正在承担的国家自然科学基金项目的单位不一致的情况；如存在上述情况，列明所涉及人员的姓名，正在承担项目的批准号、项目类型、项目名称、单位名称、起止年月，并说明单位不一致原因。}
+
+无
+
+\section{其他。}
+
+无
+
+\end{document}
