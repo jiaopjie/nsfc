@@ -68,14 +68,14 @@
 
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=*}
-\setlist[1]{leftmargin=\parindent}
+%\setlist[1]{leftmargin=\parindent}
 \setlist[enumerate,1]{label=\textup{(\arabic*)}}
 
 \usepackage{graphicx,booktabs}
 \usepackage{caption}
 \captionsetup{labelsep=quad,font={sf,small},skip=6bp}
 
-%\usepackage[hidelinks]{hyperref}
+%\usepackage[hidelinks,hypertexnames=false]{hyperref}
 
 % ----------------------------------------------------------------
 \begin{document}
@@ -95,7 +95,12 @@
 \subsection{简介}
 
 本模板为国家自然科学基金青年科学基金项目申请书正文的 \LaTeX 模板.
-项目主页地址: \texttt{https://github.com/jiaopjie/nsfc}
+\begin{itemize}
+  \item
+    项目主页地址: \texttt{https://github.com/jiaopjie/nsfc}
+  \item
+    项目备用地址: \texttt{https://gitee.com/jiaopjie/nsfc}
+\end{itemize}
 
 本模板为非官方模板, 请注意官方 Word 模板中提纲标题的改动.
 
@@ -158,7 +163,7 @@
 \begin{verbatim}
 \usepackage[a4paper,hmargin=32mm,vmargin=25.4mm]{geometry}
 \end{verbatim}
-无页眉页脚可在载入 \verb'ctex' 宏包之后使用命令 \verb'\pagestyle{empty}'.
+设置无页眉页脚的 \verb'\pagestyle{empty}' 命令须在载入 \verb'ctex' 宏包之后.
 
 \subsubsection{提纲标题格式}
 
@@ -306,8 +311,9 @@ subsubsection/number=(\arabic{subsubsection}),
       \label{fig:logo}
     \end{figure}
   \item
-    可通过 \verb'hyperref' 宏包建立交叉引用的跳转超链接.
-    但目前报告正文上传后, 系统生成的申请书中, 超链接会失效.
+    可通过 \verb'hyperref' 宏包建立交叉引用的超链接.
+    但报告正文上传后, 系统生成的申请书中超链接和书签均会失效,
+    因此这并没有什么实际意义.
 \end{itemize}
 
 \bibliographystyle{amsplain}
